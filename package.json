@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ojvar-qeng/report-service#readme",
   "dependencies": {
     "carbone": "^3.2.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   },

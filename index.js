@@ -1,6 +1,10 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const App = express();
 const morgan = require("morgan");
+
+/* Read .env file */
+dotenv.config();
 
 /* Preparation */
 App.use(express.urlencoded({ extended: false }));
