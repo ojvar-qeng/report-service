@@ -4,14 +4,19 @@ const App = express();
 const morgan = require("morgan");
 
 /* Preparation */
+App.use(express.urlencoded({ extended: false }));
+App.use(express.json());
 App.use(morgan("combined"));
 
 /* Define routes */
-App.get("/test", (req, res, next) => {
+App.post("/report/:name", (req, res, next) => {
   const reports = require("./helpers");
-  reports.ReportHelper.test()
+  reports.ReportHelper.generate(req.params.name, req.body)
     .then((stream) => {
-      res.attachment("test.pdf").type("text/pdf").send(stream);
+      res
+        .attachment(req.params.name + ".pdf")
+        .type("text/pdf")
+        .send(stream);
     })
     .catch((err) => {
       console.log(err);
