@@ -1,0 +1,29 @@
+{
+  "name": "report-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ojvar-qeng/report-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ojvar-qeng/report-service/issues"
+  },
+  "homepage": "https://github.com/ojvar-qeng/report-service#readme",
+  "dependencies": {
+    "carbone": "^3.2.3",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
