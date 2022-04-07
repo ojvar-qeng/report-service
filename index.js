@@ -1,7 +1,19 @@
+const path = require("path");
 const dotenv = require("dotenv");
 const express = require("express");
 const App = express();
 const morgan = require("morgan");
+
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.resolve("reports"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage });
 
 /* Read .env file */
 dotenv.config();
@@ -12,6 +24,10 @@ App.use(express.json());
 App.use(morgan("combined"));
 
 /* Define routes */
+App.post("/report/upload", upload.single("file"), (req, res, next) => {
+  const { originalname, mimetype } = req.file;
+  res.send({ originalname, mimetype });
+});
 App.post("/report/:name", (req, res, next) => {
   const reports = require("./helpers");
   reports.ReportHelper.generate(req.params.name, req.body)
