@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const carbone = require("carbone");
 
@@ -9,8 +10,12 @@ module.exports = ReportHelper;
  */
 ReportHelper.generate = function (reportName, data) {
   return new Promise((resolve, reject) => {
-    const file = path.resolve("reports", reportName + ".odt");
+    let file = path.resolve("reports", reportName + ".odt");
 
+    if (!fs.existsSync(file)) {
+      file = path.resolve("reports", reportName + ".doc");
+    }
+    
     carbone.render(file, data, { convertTo: "pdf" }, function (err, result) {
       if (err) {
         console.error("reprot error", err);

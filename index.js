@@ -19,11 +19,12 @@ App.post("/report/:name", (req, res, next) => {
       res
         .attachment(req.params.name + ".pdf")
         .type("text/pdf")
-        .send(stream);
+        .send(stream)
+        .end();
     })
     .catch((err) => {
       console.log(err);
-      res.send(500);
+      res.send(500).end();
     });
 });
 App.use((req, res, next) => {
